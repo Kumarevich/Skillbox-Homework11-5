@@ -73,7 +73,8 @@ std::string check_winer (std::string line1, std::string line2, std::string line3
     petyaW += chek_line(dLine2, 'X');
     vanyaW += chek_line(dLine1, 'O');
     vanyaW += chek_line(dLine2, 'O');
-    if ((petyaW == 1 || petyaW == 2) && vanyaW == 0) {
+    bool good = sum_char(line, 'X') > sum_char(line, 'O');
+    if ((petyaW == 1 || petyaW == 2) && vanyaW == 0 && good) {
         result = "Petya won.";
     } else if (vanyaW == 1 && petyaW == 0) {
         result = "Vanya won.";
