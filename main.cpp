@@ -86,14 +86,13 @@ std::string check_winer (std::string line1, std::string line2, std::string line3
     return result;
 }
 
-bool chek_input (std::string one, std::string two, std::string three) {
+bool check_input (std::string one, std::string two, std::string three) {
     std::string full = one + two + three;
     int error = 666;
-    int l = full.length() - 1;
-    int charX = 0, charO = 0, point = 0;
+    int charX = sum_char(full, 'X');
+    int charO = sum_char(full, 'O');
     if (one.length() != 3 || two.length() != 3 || three.length() != 3
-        || sum_char(full, 'X') == error
-        || sum_char(full, 'O') > sum_char(full, 'X')) {
+        || charX == error || charO == error || charO > charX || (charX - charO) > 1) {
         return false;
     }
     return true;
@@ -104,7 +103,7 @@ int main() {
     std::cout << "Input result in 3x3 format (X, O or '.' for empty slot): ";
     std::string line1, line2, line3;
     std::cin >> line1 >> line2 >> line3;
-    while (!chek_input(line1, line2, line3)) {
+    while (!check_input(line1, line2, line3)) {
         std::cout << "Wrong input. Try again in 3x3 format (X, O or '.' for empty slot): ";
         std::cin >> line1 >> line2 >> line3;
     }
